@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -22,28 +23,32 @@ import javafx.stage.Stage;
  *
  * @author lucas
  */
-public class FXMLTelaMinhasAvaliacoesController implements Initializable {
+public class FXMLTelaInformarNotaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }    
     
     @FXML
-    private Button informatNota, addNovaAvaliacao,voltarMenuPrincipal;
+    private Button voltarMinhasAvaliacoes, salvarNota;
     
     @FXML
-    private AnchorPane eRTelaMinhasAvaliacoes;
+    private TextField campoNome;
+    
     @FXML
-    public void addNovaAvaliacao(ActionEvent event) throws IOException {
+    private AnchorPane eRTelaInformarNota;
+    
+    @FXML
+    public void voltarMinhasAvaliacoes(ActionEvent event) throws IOException {
          //carrega o elemento raiz do FXML da tela que será aberta
-        AnchorPane eRTelaAddAvaliacoes = FXMLLoader.load(getClass().getResource("TelaAdicionaProva.fxml"));
+        AnchorPane eRTelaMinhasAvaliacoes = FXMLLoader.load(getClass().getResource("TelaMinhasAvaliacoes.fxml"));
         
         //cria uma nova cena, passando para o construtor o elemento raiz do FXML que será aberto
-        Scene novaCena = new Scene(eRTelaAddAvaliacoes);
+        Scene novaCena = new Scene(eRTelaMinhasAvaliacoes);
         
         //obtém a cena a partir do elemenento raiz da tela que está aberta (tela atual)
-        Scene cenaAtual = eRTelaMinhasAvaliacoes.getScene();
+        Scene cenaAtual = eRTelaInformarNota.getScene();
         
         //obtém o palco da aplicação a partir da cena atual (com cast para Stage)
         Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
@@ -54,31 +59,22 @@ public class FXMLTelaMinhasAvaliacoesController implements Initializable {
     }
     
     @FXML
-    public void informarNota(ActionEvent event) throws IOException {
-         
-        AnchorPane eRTelaInformaNota = FXMLLoader.load(getClass().getResource("TelaInformarNota.fxml"));
+    public void salvarNota(ActionEvent event) throws IOException {
+         //carrega o elemento raiz do FXML da tela que será aberta
+        AnchorPane eRTelaMinhasAvaliacoes = FXMLLoader.load(getClass().getResource("TelaMinhasAvaliacoes.fxml"));
         
-        Scene novaCena = new Scene(eRTelaInformaNota);
-               
-        Scene cenaAtual = eRTelaMinhasAvaliacoes.getScene();
-       
+        //cria uma nova cena, passando para o construtor o elemento raiz do FXML que será aberto
+        Scene novaCena = new Scene(eRTelaMinhasAvaliacoes);
+        
+        //obtém a cena a partir do elemenento raiz da tela que está aberta (tela atual)
+        Scene cenaAtual = eRTelaInformarNota.getScene();
+        
+        //obtém o palco da aplicação a partir da cena atual (com cast para Stage)
         Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
-
+        
+        //atribuindo a nova cena, criada no início do método, ao palco da aplicação
         palcoDaAplicacao.setScene(novaCena);
-    }
+        
+    }  
     
-    @FXML
-    public void voltarTelaPrincipal(ActionEvent event) throws IOException {
-        
-        AnchorPane eRTelaPrincipal = FXMLLoader.load(getClass().getResource("TelaPrincipal.fxml"));
-        
-        Scene novaCena = new Scene(eRTelaPrincipal);
-        
-        Scene cenaAtual = eRTelaMinhasAvaliacoes.getScene();
-        
-        Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
-        
-        palcoDaAplicacao.setScene(novaCena);
-
-    }
 }

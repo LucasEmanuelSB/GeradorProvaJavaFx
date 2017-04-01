@@ -5,12 +5,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="eRTelaMinhasAvaliacoes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geradordeprovafx.FXMLTelaMinhasAvaliacoesController">
    <children>
-      <Button layoutX="57.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="192.0" text="Informar nota" />
-      <Button layoutX="307.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="192.0" text="Adicionar nova avaliação" />
-      <Button layoutX="32.0" layoutY="344.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Voltar" />
+      <Button fx:id="informarNota" layoutX="57.0" layoutY="39.0" mnemonicParsing="false" onAction="#informarNota" prefHeight="25.0" prefWidth="192.0" text="Informar nota" />
+      <Button fx:id="addNovaAvaliacao" layoutX="307.0" layoutY="39.0" mnemonicParsing="false" onAction="#addNovaAvaliacao" prefHeight="25.0" prefWidth="192.0" text="Adicionar nova avaliação" />
+      <Button fx:id="voltarMenuPrincipal" layoutX="32.0" layoutY="344.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="25.0" prefWidth="67.0" text="Voltar" />
       <TableView layoutX="32.0" layoutY="83.0" prefHeight="235.0" prefWidth="497.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Nome" />

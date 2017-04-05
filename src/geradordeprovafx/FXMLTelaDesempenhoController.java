@@ -22,13 +22,16 @@ import javafx.stage.Stage;
  *
  * @author lucas
  */
-public class FXMLTelaDesempenhoController implements Initializable {
+public class FXMLTelaDesempenhoController extends InterfaceUsuario {
+
+    public FXMLTelaDesempenhoController() {
+        super("TelaDesempenho.fxml");
+    }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL location, ResourceBundle resources) {
         
-    }    
-    
+    }
     @FXML
     private Button voltarTelaPrincipal;
     
@@ -37,20 +40,7 @@ public class FXMLTelaDesempenhoController implements Initializable {
     
     @FXML
     public void voltarTelaPrincipal(ActionEvent event) throws IOException {
-         //carrega o elemento raiz do FXML da tela que será aberta
-        AnchorPane eRTelaPrincipal = FXMLLoader.load(getClass().getResource("TelaPrincipal.fxml"));
-        
-        //cria uma nova cena, passando para o construtor o elemento raiz do FXML que será aberto
-        Scene novaCena = new Scene(eRTelaPrincipal);
-        
-        //obtém a cena a partir do elemenento raiz da tela que está aberta (tela atual)
-        Scene cenaAtual = eRTelaDesempenho.getScene();
-        
-        //obtém o palco da aplicação a partir da cena atual (com cast para Stage)
-        Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
-        
-        //atribuindo a nova cena, criada no início do método, ao palco da aplicação
-        palcoDaAplicacao.setScene(novaCena);
-        
+        FXMLTelaPrincipalController tela = new FXMLTelaPrincipalController();
+        GerenciadorJanela.obterInstancia().abreJanela(tela);
     }
 }

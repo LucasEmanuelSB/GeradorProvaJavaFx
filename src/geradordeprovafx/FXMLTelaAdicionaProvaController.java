@@ -22,12 +22,16 @@ import javafx.stage.Stage;
  *
  * @author lucas
  */
-public class FXMLTelaAdicionaProvaController implements Initializable {
+public class FXMLTelaAdicionaProvaController extends InterfaceUsuario {
+
+    public FXMLTelaAdicionaProvaController() {
+        super("TelaAdicionaProva.fxml");
+    }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL location, ResourceBundle resources) {
         
-    }    
+    }
     
     @FXML
     private Button voltarMinhasAvaliacoes, salvarProva;
@@ -37,39 +41,13 @@ public class FXMLTelaAdicionaProvaController implements Initializable {
     
     @FXML
     public void voltarMinhasAvaliacoes(ActionEvent event) throws IOException {
-         //carrega o elemento raiz do FXML da tela que será aberta
-        AnchorPane eRTelaMinhasAvaliacoes = FXMLLoader.load(getClass().getResource("TelaMinhasAvaliacoes.fxml"));
-        
-        //cria uma nova cena, passando para o construtor o elemento raiz do FXML que será aberto
-        Scene novaCena = new Scene(eRTelaMinhasAvaliacoes);
-        
-        //obtém a cena a partir do elemenento raiz da tela que está aberta (tela atual)
-        Scene cenaAtual = eRTelaAddProva.getScene();
-        
-        //obtém o palco da aplicação a partir da cena atual (com cast para Stage)
-        Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
-        
-        //atribuindo a nova cena, criada no início do método, ao palco da aplicação
-        palcoDaAplicacao.setScene(novaCena);
-        
+        FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();
+        GerenciadorJanela.obterInstancia().abreJanela(tela);
     }
     
     @FXML
     public void salvarProva(ActionEvent event) throws IOException {
-         //carrega o elemento raiz do FXML da tela que será aberta
-        AnchorPane eRTelaMinhasAvaliacoes = FXMLLoader.load(getClass().getResource("TelaMinhasAvaliacoes.fxml"));
-        
-        //cria uma nova cena, passando para o construtor o elemento raiz do FXML que será aberto
-        Scene novaCena = new Scene(eRTelaMinhasAvaliacoes);
-        
-        //obtém a cena a partir do elemenento raiz da tela que está aberta (tela atual)
-        Scene cenaAtual = eRTelaAddProva.getScene();
-        
-        //obtém o palco da aplicação a partir da cena atual (com cast para Stage)
-        Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
-        
-        //atribuindo a nova cena, criada no início do método, ao palco da aplicação
-        palcoDaAplicacao.setScene(novaCena);
-        
+        FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();
+        GerenciadorJanela.obterInstancia().abreJanela(tela);
     }
 }

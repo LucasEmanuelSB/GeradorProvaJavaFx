@@ -22,12 +22,16 @@ import javafx.stage.Stage;
  *
  * @author lucas
  */
-public class FXMLTelaPrincipalController implements Initializable {
+public class FXMLTelaPrincipalController extends InterfaceUsuario {
+
+    public FXMLTelaPrincipalController() {
+        super("TelaPrincipal.fxml");
+    }
        
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }    
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }   
     
     @FXML
     private Button minhasAvaliacoes, meuDesempenho;
@@ -37,38 +41,13 @@ public class FXMLTelaPrincipalController implements Initializable {
     
     @FXML
     private void minhasAvaliacoes(ActionEvent event) throws IOException {
-         //carrega o elemento raiz do FXML da tela que será aberta
-        AnchorPane eRTelaMinhasAvaliacoes = FXMLLoader.load(getClass().getResource("TelaMinhasAvaliacoes.fxml"));
-        
-        //cria uma nova cena, passando para o construtor o elemento raiz do FXML que será aberto
-        Scene novaCena = new Scene(eRTelaMinhasAvaliacoes);
-        
-        //obtém a cena a partir do elemenento raiz da tela que está aberta (tela atual)
-        Scene cenaAtual = telaPrincipal.getScene();
-        
-        //obtém o palco da aplicação a partir da cena atual (com cast para Stage)
-        Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
-        
-        //atribuindo a nova cena, criada no início do método, ao palco da aplicação
-        palcoDaAplicacao.setScene(novaCena);
-        
-        //para abrir a tela em uma nova janela
-//        Stage novoPalco = new Stage();
-//        novoPalco.setScene(novaCena);
-//        novoPalco.show();
+         FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();
+         GerenciadorJanela.obterInstancia().abreJanela(tela);
     }
     
     @FXML
     private void meuDesempenho(ActionEvent event) throws IOException {
-        
-        AnchorPane eRTelaDesemepenho = FXMLLoader.load(getClass().getResource("TelaDesempenho.fxml"));
-        
-        Scene novaCena = new Scene(eRTelaDesemepenho);
-        
-        Scene cenaAtual = telaPrincipal.getScene();
-        
-        Stage palcoDaAplicacao = (Stage) cenaAtual.getWindow();
-        
-        palcoDaAplicacao.setScene(novaCena);
+       FXMLTelaDesempenhoController tela = new FXMLTelaDesempenhoController();
+       GerenciadorJanela.obterInstancia().abreJanela(tela);
     }
 }

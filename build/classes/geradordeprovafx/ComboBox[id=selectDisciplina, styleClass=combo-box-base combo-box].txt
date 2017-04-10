@@ -1,0 +1,1 @@
+ComboBox[id=selectDisciplina, styleClass=combo-box-base combo-box],ComboBox[id=selectMedia, styleClass=combo-box-base combo-box],TextField[id=campoNome, styleClass=text-input text-field],TextField[id=campoPeso, styleClass=text-input text-field]

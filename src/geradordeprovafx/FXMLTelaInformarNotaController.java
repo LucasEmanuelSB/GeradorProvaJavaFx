@@ -10,19 +10,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author lucas
- */
 public class FXMLTelaInformarNotaController extends InterfaceUsuario {
 
     public FXMLTelaInformarNotaController() {
@@ -30,8 +21,7 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
     }
     
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
+    public void initialize(URL location, ResourceBundle resources) {     
     }   
     
     @FXML
@@ -51,6 +41,7 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
     
     @FXML
     public void salvarNota(ActionEvent event) throws IOException {
+        
          FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();
          GerenciadorJanela.obterInstancia().abreJanela(tela);
     }  

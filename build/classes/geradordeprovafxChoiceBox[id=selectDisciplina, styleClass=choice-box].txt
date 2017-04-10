@@ -1,0 +1,1 @@
+ChoiceBox[id=selectDisciplina, styleClass=choice-box],ChoiceBox[id=selectMedia, styleClass=choice-box],TextField[id=campoNome, styleClass=text-input text-field],TextField[id=campoPeso, styleClass=text-input text-field]

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,10 +13,10 @@
       <Label fx:id="peso" layoutX="14.0" layoutY="76.0" text="Peso:" />
       <TextField fx:id="campoPeso" layoutX="14.0" layoutY="101.0" prefHeight="25.0" prefWidth="181.0" />
       <Label fx:id="disciplina" layoutX="14.0" layoutY="140.0" text="Disciplina:" />
-      <ChoiceBox fx:id="selectDisciplina" layoutX="14.0" layoutY="169.0" prefWidth="150.0" />
       <Label fx:id="media" layoutX="15.0" layoutY="209.0" text="Media:" />
-      <ChoiceBox fx:id="selectMedia" layoutX="14.0" layoutY="234.0" prefWidth="150.0" />
       <Button fx:id="voltarMinhasAvaliacoes" layoutX="18.0" layoutY="354.0" mnemonicParsing="false" onAction="#voltarMinhasAvaliacoes" prefHeight="25.0" prefWidth="88.0" text="Voltar" />
       <Button fx:id="salvarProva" layoutX="478.0" layoutY="354.0" mnemonicParsing="false" onAction="#salvarProva" prefHeight="25.0" prefWidth="88.0" text="Salvar" />
+      <ComboBox fx:id="selectDisciplina" layoutX="15.0" layoutY="166.0" onMouseClicked="#getDisciplinas" prefHeight="25.0" prefWidth="315.0" />
+      <ComboBox fx:id="selectMedia" layoutX="15.0" layoutY="235.0" onMouseClicked="#getMedias" prefHeight="25.0" prefWidth="62.0" />
    </children>
 </AnchorPane>

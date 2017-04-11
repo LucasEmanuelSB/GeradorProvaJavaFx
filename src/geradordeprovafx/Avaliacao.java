@@ -5,6 +5,12 @@
  */
 package geradordeprovafx;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import javafx.scene.control.Alert;
+
 /**
  *
  * @author lucas
@@ -16,11 +22,38 @@ public class Avaliacao {
     private String media;
     private double nota;
     private int controleArquivo;
-    
+    private ArrayList<Avaliacao> listaAvaliacoes = new ArrayList();
+            
     public Avaliacao(){
         
     }
-
+    public void salvar(){
+            
+        try{
+            Path url = Paths.get("C:/Users/lucas/Documents/Faculdade/4° Semestre/POO 2/M1/GeradorDeProvaFX/src/arquivo.txt");
+            String dadosProva = disciplina+","+media+","+nome+","+peso;
+            // converte em byte para poder enviar para funcao
+            byte[] dadosEmByte = dadosProva.getBytes();
+            try{
+                Files.write(url,dadosEmByte);//gravao em bytes na url solcitada
+            } catch(Exception erro){
+                
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Cadastro Prova");
+            alert.setHeaderText("Salvo com sucesso");
+            alert.setContentText("Um novo arquivo foi criado com as informacões da prova");
+            alert.show();
+            
+        }catch(Exception erro){
+            
+        }
+    }
+    
+    public ArrayList obtemAvaliacoes(){
+        return listaAvaliacoes;
+    }
+    
     public String getNome() {
         return nome;
     }

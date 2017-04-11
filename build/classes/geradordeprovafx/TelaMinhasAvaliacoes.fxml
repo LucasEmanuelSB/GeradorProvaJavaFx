@@ -10,13 +10,13 @@
       <Button fx:id="informarNota" layoutX="57.0" layoutY="39.0" mnemonicParsing="false" onAction="#informarNota" prefHeight="25.0" prefWidth="192.0" text="Informar nota" />
       <Button fx:id="addNovaAvaliacao" layoutX="307.0" layoutY="39.0" mnemonicParsing="false" onAction="#addNovaAvaliacao" prefHeight="25.0" prefWidth="192.0" text="Adicionar nova avaliação" />
       <Button fx:id="voltarMenuPrincipal" layoutX="32.0" layoutY="344.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="25.0" prefWidth="67.0" text="Voltar" />
-      <TableView layoutX="32.0" layoutY="83.0" prefHeight="235.0" prefWidth="497.0">
+      <TableView fx:id="tabelaMinhasAvaliacoes" layoutX="40.0" layoutY="83.0" prefHeight="235.0" prefWidth="535.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nome" />
-          <TableColumn prefWidth="135.0" text="Disciplina" />
-            <TableColumn prefWidth="85.0" text="Media" />
-            <TableColumn prefWidth="53.0" text="Peso" />
-            <TableColumn prefWidth="75.0" text="Minha nota" />
+          <TableColumn fx:id="colunaNome" prefWidth="84.0" text="Nome" />
+          <TableColumn fx:id="colunaDisciplina" prefWidth="220.0" text="Disciplina" />
+            <TableColumn fx:id="colunaMedia" prefWidth="76.0" text="Media" />
+            <TableColumn fx:id="colunaPeso" prefWidth="64.0" text="Peso" />
+            <TableColumn fx:id="colunaNota" prefWidth="89.0" text="Minha nota" />
         </columns>
       </TableView>
    </children>

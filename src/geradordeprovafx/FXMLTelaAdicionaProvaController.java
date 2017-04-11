@@ -7,15 +7,11 @@ package geradordeprovafx;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -78,33 +74,16 @@ public class FXMLTelaAdicionaProvaController extends InterfaceUsuario {
     @FXML
     public void salvarProva(ActionEvent event) throws IOException {
         
-        try{ // Caminho e dados para gravar em arquivo.
+        try{ 
             Avaliacao nova = new Avaliacao();
             nova.setNome(campoNome.toString());
             nova.setDisciplina(selectDisciplina.getValue().toString());
             nova.setPeso(Float.parseFloat(campoPeso.toString()));
             nova.setMedia(selectMedia.getValue().toString());
-            nova
-            Path url = Paths.get("C:/Users/lucas/Documents/Faculdade/4° Semestre/POO 2/M1/GeradorDeProvaFX/src/Provas/"+selectDisciplina.getValue()+".txt");
-            String dadosProva = selectDisciplina.getValue()+","+selectMedia.getValue()+","+campoNome.getText()+","+campoPeso.getText();
-            // converte em byte para poder enviar para funcao
-            byte[] dadosEmByte = dadosProva.getBytes();
-            try{
-                Files.write(url,dadosEmByte);//gravao em bytes na url solcitada
+            nova.salvar();
             } catch(Exception erro){
-                
-            }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Cadastro Prova");
-            alert.setHeaderText("Salvo com sucesso");
-            alert.setContentText("Um novo arquivo foi criado com as informacões da prova");
-            alert.show();
-            
-        } catch(Exception erro){
             
         }
-        
-        
         
         FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();
         GerenciadorJanela.obterInstancia().abreJanela(tela);

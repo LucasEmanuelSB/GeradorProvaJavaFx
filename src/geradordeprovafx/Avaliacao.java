@@ -53,7 +53,7 @@ public class Avaliacao {
         
           
     }    
-    public static ArrayList obtemAvaliacoes(){
+    public static ArrayList obterListaAvaliacoes(){
         return listaAvaliacoes;
     }
     

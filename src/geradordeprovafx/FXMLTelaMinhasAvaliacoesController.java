@@ -86,10 +86,11 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
         */
         Avaliacao avaliacao = new Avaliacao();
         
-        
-        for(int i = 0; i < avaliacao.obtemAvaliacoes().size(); i++){
-            obt
+        for(int i = 0; i < avaliacao.obterListaAvaliacoes().size(); i++){
+            avaliacao = (Avaliacao) Avaliacao.obterListaAvaliacoes().get(i);
+            listaAvaliacaoes.add(avaliacao);
         }
+        
         tabelaMinhasAvaliacaoes.setItems(listaAvaliacaoes);
           
          colunaNome.setCellValueFactory(

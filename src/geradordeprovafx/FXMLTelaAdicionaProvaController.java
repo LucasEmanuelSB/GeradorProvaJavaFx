@@ -79,6 +79,7 @@ public class FXMLTelaAdicionaProvaController extends InterfaceUsuario {
             nova.setDisciplina(selectDisciplina.getValue().toString());
             nova.setPeso(Float.parseFloat(campoPeso.getText()));
             nova.setMedia(selectMedia.getValue().toString());
+            nova.obterListaAvaliacoes().add(nova);
             nova.salvar();
 
         FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();

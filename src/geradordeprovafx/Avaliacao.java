@@ -5,6 +5,10 @@
  */
 package geradordeprovafx;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,35 +26,34 @@ public class Avaliacao {
     private String media;
     private double nota;
     private int controleArquivo;
-    private ArrayList<Avaliacao> listaAvaliacoes = new ArrayList();
+    private static ArrayList<Avaliacao> listaAvaliacoes = new ArrayList();
             
     public Avaliacao(){
         
     }
-    public void salvar(){
-            
+    public void salvar() throws IOException{
+        
         try{
-            Path url = Paths.get("C:/Users/lucas/Documents/Faculdade/4° Semestre/POO 2/M1/GeradorDeProvaFX/src/arquivo.txt");
-            String dadosProva = disciplina+","+media+","+nome+","+peso;
-            // converte em byte para poder enviar para funcao
-            byte[] dadosEmByte = dadosProva.getBytes();
-            try{
-                Files.write(url,dadosEmByte);//gravao em bytes na url solcitada
-            } catch(Exception erro){
-                
-            }
+            File arquivo = new File("Avaliacoes.txt");
+        
+            FileWriter escritor = new FileWriter(arquivo,true);
+            PrintWriter saida = new PrintWriter(escritor);
+            saida.println(disciplina+","+media+","+nome+","+peso);
+            saida.close();
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro Prova");
             alert.setHeaderText("Salvo com sucesso");
             alert.setContentText("Um novo arquivo foi criado com as informacões da prova");
-            alert.show();
+            alert.show();  
             
         }catch(Exception erro){
-            
+            System.out.println("Erro ao escrever no arquivo.");
         }
-    }
-    
-    public ArrayList obtemAvaliacoes(){
+        
+          
+    }    
+    public static ArrayList obtemAvaliacoes(){
         return listaAvaliacoes;
     }
     

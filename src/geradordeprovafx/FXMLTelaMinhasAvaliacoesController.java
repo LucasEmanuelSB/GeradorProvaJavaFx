@@ -5,11 +5,17 @@
  */
 package geradordeprovafx;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -31,11 +38,6 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
 
     public FXMLTelaMinhasAvaliacoesController() {
         super("TelaMinhasAvaliacoes.fxml");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
     }
     private ObservableList<Avaliacao> observableListAvaliacoes;
     
@@ -63,9 +65,51 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
     @FXML
     private AnchorPane eRTelaMinhasAvaliacoes;
     
-    public void carregarTabelaAvaliacoes(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Avaliacao> listaAvaliacaoes = FXCollections.observableArrayList();
+        /*
+        File arquivo = new File("Avaliacoes.txt");
+        try{
+            FileReader leitor = new FileReader(arquivo);
+            BufferedReader entrada = new BufferedReader(leitor);
+            String linhaAtual = null;
+            
+            while((linhaAtual = entrada.readLine()) != ","){
+                colunaNome = linhaAtual;
+            }
+                
+        saida.close(); 
+        } catch(Exception erro){
+            
+        }
+        */
+        Avaliacao avaliacao = new Avaliacao();
         
+        
+        for(int i = 0; i < avaliacao.obtemAvaliacoes().size(); i++){
+            obt
+        }
+        tabelaMinhasAvaliacaoes.setItems(listaAvaliacaoes);
+          
+         colunaNome.setCellValueFactory(
+            new PropertyValueFactory<Avaliacao, String>("nome")
+        );
+         colunaDisciplina.setCellValueFactory(
+             new PropertyValueFactory<Avaliacao, String>("disciplina")
+         );
+         colunaMedia.setCellValueFactory(
+             new PropertyValueFactory<Avaliacao, String>("media")
+         );
+          colunaPeso.setCellValueFactory(
+             new PropertyValueFactory<Avaliacao, String>("peso")
+         );
+           colunaNota.setCellValueFactory(
+             new PropertyValueFactory<Avaliacao, String>("nota")
+         );
+         
     }
+    
     @FXML
     public void addNovaAvaliacao(ActionEvent event) throws IOException {
         FXMLTelaAdicionaProvaController tela = new FXMLTelaAdicionaProvaController();

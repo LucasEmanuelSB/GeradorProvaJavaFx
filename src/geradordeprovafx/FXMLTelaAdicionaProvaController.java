@@ -73,18 +73,14 @@ public class FXMLTelaAdicionaProvaController extends InterfaceUsuario {
     
     @FXML
     public void salvarProva(ActionEvent event) throws IOException {
-        
-        try{ 
+
             Avaliacao nova = new Avaliacao();
-            nova.setNome(campoNome.toString());
+            nova.setNome(campoNome.getText());
             nova.setDisciplina(selectDisciplina.getValue().toString());
-            nova.setPeso(Float.parseFloat(campoPeso.toString()));
+            nova.setPeso(Float.parseFloat(campoPeso.getText()));
             nova.setMedia(selectMedia.getValue().toString());
             nova.salvar();
-            } catch(Exception erro){
-            
-        }
-        
+
         FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();
         GerenciadorJanela.obterInstancia().abreJanela(tela);
     }

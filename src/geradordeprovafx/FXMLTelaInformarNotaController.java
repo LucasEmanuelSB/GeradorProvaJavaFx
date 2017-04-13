@@ -5,12 +5,15 @@
  */
 package geradordeprovafx;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -21,17 +24,44 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
     }
     
     @Override
-    public void initialize(URL location, ResourceBundle resources) {     
+    public void initialize(URL location, ResourceBundle resources) { 
+        
     }   
     
     @FXML
-    private Button voltarMinhasAvaliacoes, salvarNota;
+    private TextField campoNota;
+    
+    @FXML Label nome, disciplina, media;
     
     @FXML
-    private TextField campoNome;
-    
-    @FXML
-    private AnchorPane eRTelaInformarNota;
+    public void salvarNota(){
+        
+        /*
+        try (Scanner scanner = new Scanner(new FileReader("Avaliacoes.csv")).useDelimiter("\r\n")) {
+            
+            while( scanner.hasNext() ){
+                Avaliacao nova = new Avaliacao();
+                String linha = scanner.next();
+                String[] partes = linha.split(";");
+                
+                    nova.controleArquivo = i;
+                    nova.disciplina = partes[0];
+                    nova.nome = partes[1];
+                    nova.media = partes[2];
+                
+                    nova.peso = Double.parseDouble(partes[3]);
+                    if( partes.length == 4 ){
+                        System.out.print(" [SEM NOTA] ");
+                    }else{
+                        nova.nota = Double.parseDouble( partes[4] );
+                    }
+                    i++; 
+                    listAvaliacoes.add(nova);
+               
+            }
+        }
+        */
+    }
     
     @FXML
     public void voltarMinhasAvaliacoes(ActionEvent event) throws IOException {

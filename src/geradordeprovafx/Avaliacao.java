@@ -38,7 +38,7 @@ public class Avaliacao {
         
             FileWriter escritor = new FileWriter(arquivo,true);
             PrintWriter saida = new PrintWriter(escritor);
-            saida.println(disciplina+","+nome+","+media+","+peso);
+            saida.println(disciplina+";"+nome+";"+media+";"+peso);
             saida.close();
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -61,31 +61,35 @@ public class Avaliacao {
         try (Scanner scanner = new Scanner(new FileReader("Avaliacoes.csv")).useDelimiter("\r\n")) {
             
             while( scanner.hasNext() ){
-                
                 Avaliacao nova = new Avaliacao();
                 String linha = scanner.next();
-                String[] partes = linha.split(",");
+                String[] partes = linha.split(";");
                 
-                nova.controleArquivo = i;
-                nova.disciplina = partes[0];
-                nova.nome = partes[1];
-                nova.media = partes[2];
+                    nova.controleArquivo = i;
+                    nova.disciplina = partes[0];
+                    nova.nome = partes[1];
+                    nova.media = partes[2];
                 
-                nova.peso = Double.parseDouble(partes[3]);
-                if( partes.length == 4 ){
-                    System.out.print(" [SEM NOTA] ");
-                }else{
-                    nova.nota = Double.parseDouble( partes[4] );
-                }
-                
-                i++; 
-                listAvaliacoes.add(nova);
+                    nova.peso = Double.parseDouble(partes[3]);
+                    if( partes.length == 4 ){
+                        System.out.print(" [SEM NOTA] ");
+                    }else{
+                        nova.nota = Double.parseDouble( partes[4] );
+                    }
+                    i++; 
+                    listAvaliacoes.add(nova);
+               
             }
         }
         
         return listAvaliacoes;
     }
- 
+    /*
+    public static double calculaMediaDaDisciplina(String disciplina, String media){
+        
+        return 
+    }
+    */
     public String getNome() {
         return nome;
     }

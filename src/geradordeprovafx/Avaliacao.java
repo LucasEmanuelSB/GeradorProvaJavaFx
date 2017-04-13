@@ -6,13 +6,14 @@
 package geradordeprovafx;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import javafx.scene.control.Alert;
 
 /**
@@ -26,7 +27,6 @@ public class Avaliacao {
     private String media;
     private double nota;
     private int controleArquivo;
-    private static ArrayList<Avaliacao> listaAvaliacoes = new ArrayList();
             
     public Avaliacao(){
         
@@ -34,11 +34,11 @@ public class Avaliacao {
     public void salvar() throws IOException{
         
         try{
-            File arquivo = new File("Avaliacoes.txt");
+            File arquivo = new File("Avaliacoes.csv");
         
             FileWriter escritor = new FileWriter(arquivo,true);
             PrintWriter saida = new PrintWriter(escritor);
-            saida.println(disciplina+","+media+","+nome+","+peso);
+            saida.println(disciplina+","+nome+","+media+","+peso);
             saida.close();
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -49,14 +49,43 @@ public class Avaliacao {
             
         }catch(Exception erro){
             System.out.println("Erro ao escrever no arquivo.");
+        }   
+    }    
+ 
+    public static ArrayList obterListaAvaliacoes() throws FileNotFoundException, IOException {
+        
+        ArrayList<Avaliacao> listAvaliacoes = new ArrayList();
+        
+        int i = 0;
+
+        try (Scanner scanner = new Scanner(new FileReader("Avaliacoes.csv")).useDelimiter("\r\n")) {
+            
+            while( scanner.hasNext() ){
+                
+                Avaliacao nova = new Avaliacao();
+                String linha = scanner.next();
+                String[] partes = linha.split(",");
+                
+                nova.controleArquivo = i;
+                nova.disciplina = partes[0];
+                nova.nome = partes[1];
+                nova.media = partes[2];
+                
+                nova.peso = Double.parseDouble(partes[3]);
+                if( partes.length == 4 ){
+                    System.out.print(" [SEM NOTA] ");
+                }else{
+                    nova.nota = Double.parseDouble( partes[4] );
+                }
+                
+                i++; 
+                listAvaliacoes.add(nova);
+            }
         }
         
-          
-    }    
-    public static ArrayList obterListaAvaliacoes(){
-        return listaAvaliacoes;
+        return listAvaliacoes;
     }
-    
+ 
     public String getNome() {
         return nome;
     }

@@ -25,21 +25,24 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FXMLTelaAdicionaProvaController extends InterfaceUsuario {
     
-    ObservableList<String> DisciplinaList = FXCollections.observableArrayList(
-    "ÉTICA EM INFORMÁTICA","MATEMÁTICA COMPUTACIONAL","ALGORITMOS E PROGRAMAÇÃO",
-    "ÁLGEBRA","INTRODUÇÃO AO CÁLCULO","INICIAÇÃO TÉCNICO-CIENTÍFICA","INTRODUÇÃO A ENGENHARIA DE COMPUTAÇÃO",
-    "INTRODUÇÃO À FÍSICA "
-    );
-    
-    ObservableList<String> MediaList = FXCollections.observableArrayList("M1","M2","M3");
-    
     public FXMLTelaAdicionaProvaController() {
         super("TelaAdicionaProva.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> DisciplinaList = FXCollections.observableArrayList(
+    "ÉTICA EM INFORMÁTICA","MATEMÁTICA COMPUTACIONAL","ALGORITMOS E PROGRAMAÇÃO",
+    "ÁLGEBRA","INTRODUÇÃO AO CÁLCULO","INICIAÇÃO TÉCNICO-CIENTÍFICA","INTRODUÇÃO A ENGENHARIA DE COMPUTAÇÃO",
+    "INTRODUÇÃO À FÍSICA "
+    );
+        selectDisciplina.setValue("Programacao Orientada a Objeto 2");
+        selectDisciplina.setItems(DisciplinaList);
         
+        ObservableList<String> MediaList = FXCollections.observableArrayList("M1","M2","M3");
+        
+        selectMedia.setValue("M1");
+        selectMedia.setItems(MediaList);
     }
     
     @FXML
@@ -53,17 +56,6 @@ public class FXMLTelaAdicionaProvaController extends InterfaceUsuario {
     
     @FXML
     private TextField campoNome, campoPeso;
-    
-    @FXML 
-    public void getDisciplinas(){
-        selectDisciplina.setValue("Programacao Orientada a Objeto 2");
-        selectDisciplina.setItems(DisciplinaList);
-    }
-    @FXML 
-    public void getMedias(){
-        selectMedia.setValue("M1");
-        selectMedia.setItems(MediaList);
-    }
     
     @FXML
     public void voltarMinhasAvaliacoes(ActionEvent event) throws IOException {
@@ -79,7 +71,6 @@ public class FXMLTelaAdicionaProvaController extends InterfaceUsuario {
             nova.setDisciplina(selectDisciplina.getValue().toString());
             nova.setPeso(Float.parseFloat(campoPeso.getText()));
             nova.setMedia(selectMedia.getValue().toString());
-            nova.obterListaAvaliacoes().add(nova);
             nova.salvar();
 
         FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();

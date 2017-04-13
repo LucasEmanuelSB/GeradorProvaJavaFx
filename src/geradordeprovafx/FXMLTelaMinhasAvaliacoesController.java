@@ -5,29 +5,24 @@
  */
 package geradordeprovafx;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Observable;
+
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -39,10 +34,11 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
     public FXMLTelaMinhasAvaliacoesController() {
         super("TelaMinhasAvaliacoes.fxml");
     }
-    private ObservableList<Avaliacao> observableListAvaliacoes;
+    
+    private ObservableList<Avaliacao> observableList;
     
     @FXML
-    private TableView<Avaliacao> tabelaMinhasAvaliacaoes;
+    private TableView<Avaliacao> tabelaMinhasAvaliacoes;
     
     @FXML
     private TableColumn<Avaliacao, String> colunaNome;
@@ -59,56 +55,35 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
     @FXML
     private TableColumn<Avaliacao, String> colunaNota;
     
-    @FXML
-    private Button informatNota, addNovaAvaliacao,voltarMenuPrincipal;
-    
-    @FXML
-    private AnchorPane eRTelaMinhasAvaliacoes;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Avaliacao> listaAvaliacaoes = FXCollections.observableArrayList();
-        /*
-        File arquivo = new File("Avaliacoes.txt");
-        try{
-            FileReader leitor = new FileReader(arquivo);
-            BufferedReader entrada = new BufferedReader(leitor);
-            String linhaAtual = null;
+       
+        try {
+    
+            colunaNome.setCellValueFactory(
+                    new PropertyValueFactory<Avaliacao, String>("nome")
+            );
+            colunaDisciplina.setCellValueFactory(
+                    new PropertyValueFactory<Avaliacao, String>("disciplina")
+            );
+            colunaMedia.setCellValueFactory(
+                    new PropertyValueFactory<Avaliacao, String>("media")
+            );
+            colunaPeso.setCellValueFactory(
+                    new PropertyValueFactory<Avaliacao, String>("peso")
+            );
+            colunaNota.setCellValueFactory(
+                    new PropertyValueFactory<Avaliacao, String>("nota")
+            );
             
-            while((linhaAtual = entrada.readLine()) != ","){
-                colunaNome = linhaAtual;
-            }
-                
-        saida.close(); 
-        } catch(Exception erro){
+            observableList =  FXCollections.observableArrayList(Avaliacao.obterListaAvaliacoes());
             
-        }
-        */
-        Avaliacao avaliacao = new Avaliacao();
-        
-        for(int i = 0; i < avaliacao.obterListaAvaliacoes().size(); i++){
-            avaliacao = (Avaliacao) Avaliacao.obterListaAvaliacoes().get(i);
-            listaAvaliacaoes.add(avaliacao);
-        }
-        
-        tabelaMinhasAvaliacaoes.setItems(listaAvaliacaoes);
-          
-         colunaNome.setCellValueFactory(
-            new PropertyValueFactory<Avaliacao, String>("nome")
-        );
-         colunaDisciplina.setCellValueFactory(
-             new PropertyValueFactory<Avaliacao, String>("disciplina")
-         );
-         colunaMedia.setCellValueFactory(
-             new PropertyValueFactory<Avaliacao, String>("media")
-         );
-          colunaPeso.setCellValueFactory(
-             new PropertyValueFactory<Avaliacao, String>("peso")
-         );
-           colunaNota.setCellValueFactory(
-             new PropertyValueFactory<Avaliacao, String>("nota")
-         );
-         
+            tabelaMinhasAvaliacoes.setItems(observableList);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLTelaMinhasAvaliacoesController.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }
     
     @FXML

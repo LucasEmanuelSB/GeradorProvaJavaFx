@@ -26,12 +26,14 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
     @Override
     public void initialize(URL location, ResourceBundle resources) { 
         
+        atualizaPagina();
     }   
     
     @FXML
     private TextField campoNota;
     
-    @FXML Label nome, disciplina, media;
+    @FXML 
+    private Label nome, disciplina, media;
     
     @FXML
     public void salvarNota(){
@@ -76,4 +78,8 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
          GerenciadorJanela.obterInstancia().abreJanela(tela);
     }  
     
+    public void atualizaPagina(){
+        
+        nome = nome.getText()+ Avaliacao.obterListaAvaliacoes().get()
+    }
 }

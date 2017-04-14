@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -68,7 +69,7 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
         tabelaMinhasAvaliacoes.getSelectionModel().selectedItemProperty().addListener((
                 observable, oldValue, newValue) -> selecaoDeUmaLinha(newValue));
     }
-    
+        
     public void carregaTabela(){
         
         try {
@@ -106,9 +107,21 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
     @FXML
     public void informarNota(ActionEvent event) throws IOException {
         
-        // continuar aqui
+        //Verifica se um item da lista esta selecionado, se sim, entra na tela de informar nota.
+        if(tabelaMinhasAvaliacoes.getSelectionModel().selectedItemProperty().getValue() != null){
+            
         FXMLTelaInformarNotaController tela = new FXMLTelaInformarNotaController();
         GerenciadorJanela.obterInstancia().abreJanela(tela);
+        
+        } else{
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhuma prova selecionada");
+            alert.setContentText("Para realizar essa operação, é necessário selecionar um prova da tabela.");
+            alert.show();  
+        }
+        
     }
     
     @FXML

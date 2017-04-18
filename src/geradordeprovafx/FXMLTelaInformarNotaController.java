@@ -5,11 +5,20 @@
  */
 package geradordeprovafx;
 
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +35,11 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
     @Override
     public void initialize(URL location, ResourceBundle resources) { 
         
-        atualizaPagina();
+        try {
+            atualizaPagina();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLTelaInformarNotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }   
     
     @FXML
@@ -36,33 +49,25 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
     private Label nome, disciplina, media;
     
     @FXML
-    public void salvarNota(){
+    public void salvarNota() throws IOException{
         
-        /*
-        try (Scanner scanner = new Scanner(new FileReader("Avaliacoes.csv")).useDelimiter("\r\n")) {
+        Path caminho = Paths.get("Avaliacao.csv");
+        List<String> linhas = Files.readAllLines(caminho);
+       
+        int id = GerenciadorJanela.obterInstancia().getId();
+        String linha = linhas.get(id).substring(0, linhas.get(id).length())  + ";" + campoNota.getText();
+        linhas.set(id, linha);
+        
+        File arquivo = new File("Avaliacoes.csv");
+        
+            FileWriter escritor = new FileWriter(arquivo);
+            PrintWriter saida = new PrintWriter(escritor);
             
-            while( scanner.hasNext() ){
-                Avaliacao nova = new Avaliacao();
-                String linha = scanner.next();
-                String[] partes = linha.split(";");
-                
-                    nova.controleArquivo = i;
-                    nova.disciplina = partes[0];
-                    nova.nome = partes[1];
-                    nova.media = partes[2];
-                
-                    nova.peso = Double.parseDouble(partes[3]);
-                    if( partes.length == 4 ){
-                        System.out.print(" [SEM NOTA] ");
-                    }else{
-                        nova.nota = Double.parseDouble( partes[4] );
-                    }
-                    i++; 
-                    listAvaliacoes.add(nova);
-               
+            for(int i = 0; i < linhas.size(); i++){
+                saida.println(linhas.get(i));
             }
-        }
-        */
+            
+            saida.close();
     }
     
     @FXML
@@ -78,8 +83,13 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
          GerenciadorJanela.obterInstancia().abreJanela(tela);
     }  
     
-    public void atualizaPagina(){
+    public void atualizaPagina() throws IOException{
         
-        nome = nome.getText()+ Avaliacao.obterListaAvaliacoes().get()
+       int id = GerenciadorJanela.obterInstancia().getId();
+       
+       nome.setText(nome.getText() + " " + Avaliacao.obterListaAvaliacoes().get(id).getNome());
+       disciplina.setText(disciplina.getText() + " " + Avaliacao.obterListaAvaliacoes().get(id).getDisciplina());
+       media.setText(media.getText() + " " + Avaliacao.obterListaAvaliacoes().get(id).getMedia());
+
     }
 }

@@ -110,8 +110,11 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
         //Verifica se um item da lista esta selecionado, se sim, entra na tela de informar nota.
         if(tabelaMinhasAvaliacoes.getSelectionModel().selectedItemProperty().getValue() != null){
             
-        FXMLTelaInformarNotaController tela = new FXMLTelaInformarNotaController();
-        GerenciadorJanela.obterInstancia().abreJanela(tela);
+            int id = tabelaMinhasAvaliacoes.getSelectionModel().selectedItemProperty().getValue().getControleArquivo();
+            
+            GerenciadorJanela.obterInstancia().setId(id);
+            FXMLTelaInformarNotaController tela = new FXMLTelaInformarNotaController();
+            GerenciadorJanela.obterInstancia().abreJanela(tela);
         
         } else{
             

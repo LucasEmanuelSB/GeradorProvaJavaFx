@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class GerenciadorJanela {
     
     private static GerenciadorJanela instancia;
+    private int id;
     
     private GerenciadorJanela(){
         
@@ -43,6 +44,14 @@ public class GerenciadorJanela {
     public void abreEmPopup(InterfaceUsuario novaJanela){
         Stage popUp = new Stage();
         popUp.setScene(novaJanela.obterCena());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

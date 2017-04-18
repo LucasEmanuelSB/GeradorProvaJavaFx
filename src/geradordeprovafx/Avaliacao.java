@@ -52,7 +52,7 @@ public class Avaliacao {
         }   
     }    
  
-    public static ArrayList obterListaAvaliacoes() throws FileNotFoundException, IOException {
+    public static ArrayList<Avaliacao> obterListaAvaliacoes() throws FileNotFoundException, IOException {
         
         ArrayList<Avaliacao> listAvaliacoes = new ArrayList();
         

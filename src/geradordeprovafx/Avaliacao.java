@@ -83,12 +83,12 @@ public class Avaliacao {
         
         return listAvaliacoes;
     }
-    /*
+    
     public static double calculaMediaDaDisciplina(String disciplina, String media){
-        
-        return 
+         double m1 = 0;
+        return m1;
     }
-    */
+    
     public String getNome() {
         return nome;
     }

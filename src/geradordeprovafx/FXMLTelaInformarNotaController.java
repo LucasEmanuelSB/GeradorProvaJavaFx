@@ -12,22 +12,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+
 
 
 public class FXMLTelaInformarNotaController extends InterfaceUsuario {
@@ -67,32 +61,15 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
         String[] arrayLinha = new String[linhas.size()]; 
         linhas.toArray(arrayLinha); 
         
-        System.out.println(linhas.get(id));
         
-        int ptVirgula = 0;
-        char c;
+        String linha = 
+                
+                Avaliacao.obterListaAvaliacoes().get(id).getDisciplina() + ';' +
+                Avaliacao.obterListaAvaliacoes().get(id).getMedia() + ';' +
+                Avaliacao.obterListaAvaliacoes().get(id).getNome() + ';' +
+                Avaliacao.obterListaAvaliacoes().get(id).getPeso() + ';' + campoNota.getText();
         
-        for(int i = 0; i < linhas.get(id).length(); i++){ 
-            c = linhas.get(id).charAt(i);
-            if(c == ';')
-                ptVirgula++;
-        }
-        
-        if(ptVirgula < 4 ){
-            String linha = linhas.get(id) + ";" + campoNota.getText();
-            linhas.set(id, linha);
-        } if(ptVirgula >= 4) {
-            /*
-            System.out.print("lalalala");
-            String tamNotaAnterior = Double.toString(Avaliacao.obterListaAvaliacoes().get(id).getNota());
-            String linha = linhas.get(id).substring(0, linhas.get(id).length() - 1 - tamNotaAnterior.length());
-            linha = linha + ";" + campoNota.getText();
-            linhas.set(id, linha);
-            System.out.print(linha);
-            */
-            }
-
-        System.out.println(linhas.get(id));
+        linhas.set(id, linha);
         
         File arquivo = new File("Avaliacoes.csv");
         
@@ -103,27 +80,7 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
         }
             
         saida.close();
-        /*
-        Path caminho = Paths.get("Avaliacao.csv");
-        List<String> linha = FileUtils.readLines(caminho);
         
-        int id = GerenciadorJanela.obterInstancia().getId();
-        String linha = linhas.get(id).substring(0, linhas.get(id).length())  + ";" + campoNota.getText();
-        System.out.print("lalalala");
-        linhas.set(id, linha);
-        System.out.println(linhas.get(id));
-        
-        File arquivo = new File("Avaliacoes.csv");
-        
-            FileWriter escritor = new FileWriter(arquivo);
-            PrintWriter saida = new PrintWriter(escritor);
-            
-            for(int i = 0; i < linhas.size(); i++){
-                saida.println(linhas.get(i));
-            }
-            
-            saida.close();
-            */
         FXMLTelaMinhasAvaliacoesController tela = new FXMLTelaMinhasAvaliacoesController();
          GerenciadorJanela.obterInstancia().abreJanela(tela);
     }

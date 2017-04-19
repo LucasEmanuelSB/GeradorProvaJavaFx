@@ -10,12 +10,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
 /**
  * FXML Controller class
@@ -27,20 +25,35 @@ public class FXMLTelaDesempenhoController extends InterfaceUsuario {
     public FXMLTelaDesempenhoController() {
         super("TelaDesempenho.fxml");
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
-    @FXML
-    private Button voltarTelaPrincipal;
     
     @FXML
-    private AnchorPane eRTelaDesempenho;
+    private BarChart<?, ?> grafico;
+
+    @FXML
+    private CategoryAxis disciplinas;
+
+    @FXML
+    private NumberAxis medias;
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        XYChart.Series desempenho = new XYChart.Series<>();
+        
+        desempenho.getData().add(new XYChart.Data<>("dasjdsaiod", 10));
+        
+        grafico.getData().addAll(desempenho);
+    }
     
     @FXML
     public void voltarTelaPrincipal(ActionEvent event) throws IOException {
         FXMLTelaPrincipalController tela = new FXMLTelaPrincipalController();
         GerenciadorJanela.obterInstancia().abreJanela(tela);
+    }
+    
+    public Double calculaMediaDaDisciplina(String linha, char media){
+         
+        double m = 0;
+                
+         return m;
     }
 }

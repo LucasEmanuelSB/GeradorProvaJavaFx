@@ -6,17 +6,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="eRTelaAddProva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geradordeprovafx.FXMLTelaAdicionaProvaController">
+<AnchorPane fx:id="eRTelaAddProva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geradordeprovafx.FXMLTelaAdicionaProvaController">
    <children>
-      <Label fx:id="nome" layoutX="14.0" layoutY="14.0" text="Nome:" />
-      <TextField fx:id="campoNome" layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="552.0" />
-      <Label fx:id="peso" layoutX="14.0" layoutY="76.0" text="Peso:" />
-      <TextField fx:id="campoPeso" layoutX="14.0" layoutY="101.0" prefHeight="25.0" prefWidth="181.0" />
-      <Label fx:id="disciplina" layoutX="14.0" layoutY="140.0" text="Disciplina:" />
-      <Label fx:id="media" layoutX="15.0" layoutY="209.0" text="Media:" />
-      <Button fx:id="voltarMinhasAvaliacoes" layoutX="18.0" layoutY="354.0" mnemonicParsing="false" onAction="#voltarMinhasAvaliacoes" prefHeight="25.0" prefWidth="88.0" text="Voltar" />
-      <Button fx:id="salvarProva" layoutX="478.0" layoutY="354.0" mnemonicParsing="false" onAction="#salvarProva" prefHeight="25.0" prefWidth="88.0" text="Salvar" />
-      <ComboBox fx:id="selectDisciplina" layoutX="15.0" layoutY="166.0"  prefHeight="25.0" prefWidth="315.0" />
-      <ComboBox fx:id="selectMedia" layoutX="15.0" layoutY="235.0"  prefHeight="25.0" prefWidth="62.0" />
+      <Label fx:id="nome" layoutX="355.0" layoutY="192.0" text="Nome:" />
+      <TextField fx:id="campoNome" layoutX="355.0" layoutY="220.0" prefHeight="25.0" prefWidth="306.0" />
+      <Label fx:id="peso" layoutX="355.0" layoutY="258.0" text="Peso:" />
+      <TextField fx:id="campoPeso" layoutX="355.0" layoutY="283.0" prefHeight="25.0" prefWidth="119.0" />
+      <Label fx:id="disciplina" layoutX="355.0" layoutY="340.0" text="Disciplina:" />
+      <Label fx:id="media" layoutX="355.0" layoutY="424.0" text="Media:" />
+      <Button fx:id="voltarMinhasAvaliacoes" layoutX="582.0" layoutY="506.0" mnemonicParsing="false" onAction="#voltarMinhasAvaliacoes" prefHeight="25.0" prefWidth="88.0" text="Voltar" />
+      <Button fx:id="salvarProva" layoutX="355.0" layoutY="506.0" mnemonicParsing="false" onAction="#salvarProva" prefHeight="25.0" prefWidth="88.0" text="Salvar" />
+      <ComboBox fx:id="selectDisciplina" layoutX="360.0" layoutY="372.0" prefHeight="25.0" prefWidth="315.0" />
+      <ComboBox fx:id="selectMedia" layoutX="360.0" layoutY="451.0" prefHeight="25.0" prefWidth="62.0" />
    </children>
 </AnchorPane>

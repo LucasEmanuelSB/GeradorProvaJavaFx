@@ -29,7 +29,7 @@ public abstract class InterfaceUsuario implements Initializable{
     public Scene obterCena()  {
         try {
             Pane elementoPrincipal = FXMLLoader.load(getClass().getResource(caminhoFxml));
-            this.minhaCena = new Scene( elementoPrincipal, 600, 400);
+            this.minhaCena = new Scene( elementoPrincipal, 1024, 768);
         } catch (IOException ex) {
             Logger.getLogger(InterfaceUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }

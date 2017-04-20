@@ -5,6 +5,7 @@
  */
 package geradordeprovafx;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import javafx.scene.control.Alert;
 
@@ -20,75 +22,93 @@ import javafx.scene.control.Alert;
  * @author lucas
  */
 public class Avaliacao {
+
     private String nome;
     private String disciplina;
     private double peso;
     private String media;
     private double nota;
     private int controleArquivo;
-            
-    public Avaliacao(){
-        
+
+    public Avaliacao() {
+
     }
-    public void salvar() throws IOException{
-        
-        try{
+
+    public void salvar() throws IOException {
+
+        try {
             File arquivo = new File("Avaliacoes.csv");
-        
-            FileWriter escritor = new FileWriter(arquivo,true);
+
+            FileWriter escritor = new FileWriter(arquivo, true);
             PrintWriter saida = new PrintWriter(escritor);
-            saida.println(disciplina+";"+nome+";"+media+";"+peso);
+            saida.println(disciplina + ";" + nome + ";" + media + ";" + peso);
             saida.close();
-            
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro Prova");
             alert.setHeaderText("Salvo com sucesso");
             alert.setContentText("Um novo arquivo foi criado com as informacões da prova");
-            alert.show();  
-            
-        }catch(Exception erro){
+            alert.show();
+
+        } catch (Exception erro) {
             System.out.println("Erro ao escrever no arquivo.");
-        }   
-    }    
- 
+        }
+    }
+
     public static ArrayList<Avaliacao> obterListaAvaliacoes() throws FileNotFoundException, IOException {
-        
+
         ArrayList<Avaliacao> listAvaliacoes = new ArrayList();
-        
+
         int i = 0;
 
         try (Scanner scanner = new Scanner(new FileReader("Avaliacoes.csv")).useDelimiter("\r\n")) {
-            
-            while( scanner.hasNext() ){
+
+            while (scanner.hasNext()) {
                 Avaliacao nova = new Avaliacao();
                 String linha = scanner.next();
                 String[] partes = linha.split(";");
-                
-                    nova.controleArquivo = i;
-                    nova.disciplina = partes[0];
-                    nova.nome = partes[1];
-                    nova.media = partes[2];
-                
-                    nova.peso = Double.parseDouble(partes[3]);
-                    if( partes.length == 4 ){
-                        System.out.print(" [SEM NOTA] ");
-                    }else{
-                        nova.nota = Double.parseDouble( partes[4] );
-                    }
-                    i++; 
-                    listAvaliacoes.add(nova);
-               
+
+                nova.controleArquivo = i;
+                nova.disciplina = partes[0];
+                nova.nome = partes[1];
+                nova.media = partes[2];
+
+                nova.peso = Double.parseDouble(partes[3]);
+                if (partes.length == 4) {
+                    System.out.print(" [SEM NOTA] ");
+                } else {
+                    nova.nota = Double.parseDouble(partes[4]);
+                }
+                i++;
+                listAvaliacoes.add(nova);
+
             }
         }
-        
+
         return listAvaliacoes;
     }
-    
-    public static double calculaMediaDaDisciplina(String disciplina, String media){
-         double m1 = 0;
-        return m1;
+
+     public static Double calculaMediaDaDisciplina(String media, String disciplina) throws IOException {
+        ArrayList listaAvaliacao = Avaliacao.obterListaAvaliacoes();
+        
+        double mx = 0;
+        int iPeso = 0;
+        for (int i = 0 ; i <listaAvaliacao.size(); i++){
+            Avaliacao a = (Avaliacao) listaAvaliacao.get(i);
+            if(a.getDisciplina().equals(disciplina)){
+                if(a.getMedia().equals(media)){
+                    mx += a.getNota()*a.getPeso();
+                    iPeso+= a.getPeso();
+                }        
+            }
+        }
+        if(iPeso != 0){
+        mx = mx/iPeso;
+        }
+        
+        return mx;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -124,7 +144,7 @@ public class Avaliacao {
     public double getNota() {
         return nota;
     }
-    
+
     public void setNota(double nota) {
         this.nota = nota;
     }
@@ -136,6 +156,5 @@ public class Avaliacao {
     public void setControleArquivo(int controleArquivo) {
         this.controleArquivo = controleArquivo;
     }
-    
-    
+
 }

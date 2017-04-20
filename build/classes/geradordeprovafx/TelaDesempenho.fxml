@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geradordeprovafx.FXMLTelaDesempenhoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geradordeprovafx.FXMLTelaDesempenhoController">
    <children>
-      <Button fx:id="voltarPrincipalBT" layoutX="10.0" layoutY="703.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="45.0" prefWidth="150.0" text="Voltar" />
-      <BarChart fx:id="grafico" layoutX="18.0" layoutY="8.0" prefHeight="514.0" prefWidth="997.0" title="Meu Desempenho">
+      <BarChart fx:id="grafico" layoutX="163.0" layoutY="170.0" prefHeight="410.0" prefWidth="771.0" title="Meu Desempenho">
         <xAxis>
           <CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
         </xAxis>
@@ -16,7 +20,15 @@
           <NumberAxis fx:id="numberAxis" side="LEFT" />
         </yAxis>
       </BarChart>
-      <ComboBox fx:id="cBDisciplinas" layoutX="639.0" layoutY="536.0" prefHeight="23.0" prefWidth="336.0" promptText="Selecione a disciplina..." />
-      <Button layoutX="865.0" layoutY="707.0" mnemonicParsing="false" onAction="#geradorGrafico" prefHeight="45.0" prefWidth="150.0" text="Adicionar" />
+      <ComboBox fx:id="cBDisciplinas" layoutX="190.0" layoutY="616.0" prefHeight="36.0" prefWidth="313.0" promptText="Selecione a disciplina..." />
+      <Button fx:id="adicionar" layoutX="784.0" layoutY="616.0" mnemonicParsing="false" onAction="#geradorGrafico" prefHeight="36.0" prefWidth="140.0" text="Adicionar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="voltarMenuPrincipal" alignment="CENTER" layoutX="172.0" layoutY="49.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="36.0" prefWidth="140.0" text="Voltar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

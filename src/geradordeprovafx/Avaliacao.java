@@ -40,7 +40,7 @@ public class Avaliacao {
 
             FileWriter escritor = new FileWriter(arquivo, true);
             PrintWriter saida = new PrintWriter(escritor);
-            saida.println(disciplina + ";" + nome + ";" + media + ";" + peso+ ";0");
+            saida.println(disciplina + ";" + nome + ";" + media + ";" + peso + ";" + "0.0");
             saida.close();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -69,17 +69,12 @@ public class Avaliacao {
 
                 nova.controleArquivo = i;
                 nova.disciplina = partes[0];
-                nova.nome = partes[2];
-                nova.media = partes[1];
-
+                nova.nome = partes[1];
+                nova.media = partes[2];
                 nova.peso = Double.parseDouble(partes[3]);
-                
-                if (partes[4].length() <= 0){
-                    System.out.print(" [SEM NOTA] ");
-                } else {
-                    nova.nota = Double.parseDouble(partes[4]);
-                }
+                nova.nota = Double.parseDouble(partes[4]);
                 i++;
+                
                 listAvaliacoes.add(nova);
 
             }
@@ -91,18 +86,13 @@ public class Avaliacao {
      public static Double calculaMediaDaDisciplina(String disciplina, String media) throws IOException {
         List<Avaliacao> a = Avaliacao.obterListaAvaliacoes();
         
-        
         double mx = 0;
         int iPeso = 0;
         for (int i = 0 ; i <a.size(); i++){
                                                     
             if(a.get(i).getDisciplina().equals(disciplina)){
-                System.out.println("Media parametro : "+media);
-                                                    System.out.println("Media atributo : "+a.get(i).media);
                 if(a.get(i).getMedia().equals(media)){
-
                     mx += a.get(i).getNota()*a.get(i).getPeso();
-
                     iPeso+= a.get(i).getPeso();
                 }        
             }

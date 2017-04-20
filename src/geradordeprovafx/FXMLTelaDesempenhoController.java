@@ -53,6 +53,7 @@ public class FXMLTelaDesempenhoController extends InterfaceUsuario {
             
             disciplinas = FXCollections.observableArrayList(listaAvaliacao);
             cBDisciplinas.setItems(disciplinas);
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLTelaDesempenhoController.class.getName()).log(Level.SEVERE, null, ex);
         }

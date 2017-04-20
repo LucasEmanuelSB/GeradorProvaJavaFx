@@ -73,12 +73,13 @@ public class FXMLTelaMinhasAvaliacoesController extends InterfaceUsuario {
     public void carregaTabela(){
         
         try {
-            colunaNome.setCellValueFactory(
-                    new PropertyValueFactory<Avaliacao, String>("nome")
-            );
             colunaDisciplina.setCellValueFactory(
                     new PropertyValueFactory<Avaliacao, String>("disciplina")
             );
+            colunaNome.setCellValueFactory(
+                    new PropertyValueFactory<Avaliacao, String>("nome")
+            );
+            
             colunaMedia.setCellValueFactory(
                     new PropertyValueFactory<Avaliacao, String>("media")
             );

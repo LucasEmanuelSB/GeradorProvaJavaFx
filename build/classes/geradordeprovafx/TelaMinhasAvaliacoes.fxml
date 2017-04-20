@@ -4,19 +4,29 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="eRTelaMinhasAvaliacoes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geradordeprovafx.FXMLTelaMinhasAvaliacoesController">
+<AnchorPane fx:id="eRTelaMinhasAvaliacoes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geradordeprovafx.FXMLTelaMinhasAvaliacoesController">
    <children>
-      <Button fx:id="informarNota" layoutX="224.0" layoutY="136.0" mnemonicParsing="false" onAction="#informarNota" prefHeight="25.0" prefWidth="192.0" text="Informar nota" />
-      <Button fx:id="addNovaAvaliacao" layoutX="589.0" layoutY="136.0" mnemonicParsing="false" onAction="#addNovaAvaliacao" prefHeight="25.0" prefWidth="192.0" text="Adicionar nova avaliação" />
-      <Button fx:id="voltarMenuPrincipal" layoutX="139.0" layoutY="648.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="25.0" prefWidth="67.0" text="Voltar" />
-      <TableView fx:id="tabelaMinhasAvaliacoes" layoutX="139.0" layoutY="187.0" prefHeight="395.0" prefWidth="721.0">
+      <Button fx:id="informarNota" layoutX="152.0" layoutY="125.0" mnemonicParsing="false" onAction="#informarNota" prefHeight="36.0" prefWidth="276.0" text="Informar nota">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="addNovaAvaliacao" layoutX="589.0" layoutY="125.0" mnemonicParsing="false" onAction="#addNovaAvaliacao" prefHeight="36.0" prefWidth="284.0" text="Adicionar nova avaliação">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="voltarMenuPrincipal" alignment="CENTER" layoutX="152.0" layoutY="29.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="36.0" prefWidth="140.0" text="Voltar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <TableView fx:id="tabelaMinhasAvaliacoes" layoutX="152.0" layoutY="187.0" prefHeight="395.0" prefWidth="721.0">
         <columns>
-          <TableColumn fx:id="colunaNome" prefWidth="202.0" text="Nome" />
-            <TableColumn fx:id="colunaMedia" prefWidth="73.0" text="Media" />
-            <TableColumn fx:id="colunaPeso" prefWidth="69.0" text="Peso" />
-            <TableColumn fx:id="colunaNota" prefWidth="91.0" text="Minha nota" />
-          <TableColumn fx:id="colunaDisciplina" prefWidth="285.0" text="Disciplina" />
+          <TableColumn fx:id="colunaDisciplina" prefWidth="226.0" text="DISCIPLINA" />
+            <TableColumn fx:id="colunaNome" prefWidth="242.0" text="NOME" />
+            <TableColumn fx:id="colunaMedia" prefWidth="71.0" text="MEDIA" />
+            <TableColumn fx:id="colunaPeso" prefWidth="61.0" text="PESO" />
+          <TableColumn fx:id="colunaNota" prefWidth="120.0" text="MINHA NOTA" />
         </columns>
       </TableView>
    </children>

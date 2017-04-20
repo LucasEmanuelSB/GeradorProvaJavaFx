@@ -5,7 +5,6 @@
  */
 package geradordeprovafx;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -41,7 +40,7 @@ public class Avaliacao {
 
             FileWriter escritor = new FileWriter(arquivo, true);
             PrintWriter saida = new PrintWriter(escritor);
-            saida.println(disciplina + ";" + nome + ";" + media + ";" + peso);
+            saida.println(disciplina + ";" + nome + ";" + media + ";" + peso+ ";0");
             saida.close();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -70,11 +69,12 @@ public class Avaliacao {
 
                 nova.controleArquivo = i;
                 nova.disciplina = partes[0];
-                nova.nome = partes[1];
-                nova.media = partes[2];
+                nova.nome = partes[2];
+                nova.media = partes[1];
 
                 nova.peso = Double.parseDouble(partes[3]);
-                if (partes.length == 4) {
+                
+                if (partes[4].length() <= 0){
                     System.out.print(" [SEM NOTA] ");
                 } else {
                     nova.nota = Double.parseDouble(partes[4]);
@@ -88,24 +88,28 @@ public class Avaliacao {
         return listAvaliacoes;
     }
 
-     public static Double calculaMediaDaDisciplina(String media, String disciplina) throws IOException {
-        ArrayList listaAvaliacao = Avaliacao.obterListaAvaliacoes();
+     public static Double calculaMediaDaDisciplina(String disciplina, String media) throws IOException {
+        List<Avaliacao> a = Avaliacao.obterListaAvaliacoes();
+        
         
         double mx = 0;
         int iPeso = 0;
-        for (int i = 0 ; i <listaAvaliacao.size(); i++){
-            Avaliacao a = (Avaliacao) listaAvaliacao.get(i);
-            if(a.getDisciplina().equals(disciplina)){
-                if(a.getMedia().equals(media)){
-                    mx += a.getNota()*a.getPeso();
-                    iPeso+= a.getPeso();
+        for (int i = 0 ; i <a.size(); i++){
+                                                    
+            if(a.get(i).getDisciplina().equals(disciplina)){
+                System.out.println("Media parametro : "+media);
+                                                    System.out.println("Media atributo : "+a.get(i).media);
+                if(a.get(i).getMedia().equals(media)){
+
+                    mx += a.get(i).getNota()*a.get(i).getPeso();
+
+                    iPeso+= a.get(i).getPeso();
                 }        
             }
         }
         if(iPeso != 0){
         mx = mx/iPeso;
         }
-        
         return mx;
     }
 

@@ -7,6 +7,10 @@ package geradordeprovafx;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,8 +20,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 
@@ -36,94 +38,37 @@ public class FXMLTelaDesempenhoController extends InterfaceUsuario {
     private BarChart<?, ?> grafico;
 
     @FXML
-    private ComboBox cBDisciplinas;
-
+    private ComboBox <String> cBDisciplinas;
+    
+    private ObservableList<String> disciplinas;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        ObservableList<String> DisciplinaList = FXCollections.observableArrayList(
-                "ETICA EM INFORMATICA",
-                 "MATEMATICA COMPUTACIONAL",
-                 "ALGORITMOS E PROGRAMACAO",
-                 "ALGEBRA",
-                 "INTRODUCAO AO CALCULO",
-                 "INICIACAO TECNICO-CIENTIFICA",
-                 "INTRODUCAO A ENGENHARIA DE COMPUTACAO",
-                 "INTRODUCAO A FISICA",
-                 "CALCULO",
-                 "ALGORITMOS E PROGRAMACAO",
-                 "CIRCUITOS DIGITAIS",
-                 "DESENHO TECNICO",
-                 "FISICA GERAL",
-                 "ALGEBRA",
-                 "CALCULO",
-                 "ESTRUTURA DE DADOS",
-                 "PROGRAMACAO ORIENTADA A OBJETOS",
-                 "ARQUITETURA DE COMPUTADORES",
-                 "FISICA",
-                 "QUIMICA",
-                 "ARQUITETURA DE COMPUTADORES",
-                 "PROGRAMACAO ORIENTADA A OBJETOS",
-                 "CALCULO",
-                 "QUIMICA",
-                 "OTICA E FISICA PARA SEMICONDUTORES",
-                 "RESISTENCIA DOS MATERIAIS",
-                 "ANALISE DE CIRCUITOS ELETRICOS",
-                 "BANCO DE DADOS",
-                 "SISTEMAS OPERACIONAIS",
-                 "MATEMATICA APLICADA A ENGENHARIA",
-                 "ENGENHARIA DE SOFTWARE",
-                 "PROBABILIDADE E ESTATISTICA",
-                 "ELETRONICA BASICA",
-                 "INTERFACE HUMANO-COMPUTADOR",
-                 "ENGENHARIA DE SOFTWARE",
-                 "REDES DE COMPUTADORES",
-                 "CALCULO NUMERICO",
-                 "LINGUAGENS FORMAIS",
-                 "ELETRONICA APLICADA",
-                 "ANALISE E CONTROLE DE PROCESSOS",
-                 "ENGENHARIA ECONOMICA",
-                 "REDES DE COMPUTADORES",
-                 "GRAFOS",
-                 "CONTROLE LOGICO DE SISTEMAS",
-                 "MICROCONTROLADORES",
-                 "PROJETO DE SISTEMAS DIGITAIS",
-                 "INTELIGENCIA ARTIFICIAL",
-                 "TRABALHO TECNICO CIENTIFICO DE CONCLUSAO DE CURSO",
-                 "PROJETO DE SISTEMAS EMBARCADOS",
-                 "SISTEMAS EM TEMPO REAL",
-                 "COMUNICACAO DIGITAL",
-                 "PROCESSADOR DIGITAL DE SINAIS",
-                 "SISTEMAS ROBOTICOS",
-                 "SIMULACAO DISCRETA",
-                 "GERENCIA DE PROJETOS",
-                 "TOPICOS ESPECIAIS EM ENGENHARIA DE COMPUTACAO",
-                 "TOPICOS ESPECIAIS EM HARDWARE",
-                 "TRABALHO TECNICO CIENTIFICO DE CONCLUSAO DE CURSO",
-                 "ADMINISTRACAO DE NEGOCIOS DE BASE TECNOLOGICA",
-                 "TOPICOS ESPECIAIS EM INTEGRACAO SOFTWARE HARDWARE",
-                 "TRABALHO TECNICO CIENTIFICO DE CONCLUSAO DE CURSO",
-                 "SISTEMAS DISTRIBUIDOS"
-        );
-
-        cBDisciplinas.setPromptText("Selecione uma disciplina ... ");
-        cBDisciplinas.setValue("ÉTICA EM INFORMÁTICA");
-        cBDisciplinas.setItems(DisciplinaList);
-
+            
+        try {
+            Path path = Paths.get("ListaDisciplinas.csv");
+            List<String> listaAvaliacao;
+            listaAvaliacao = Files.readAllLines(path);
+            
+            
+            disciplinas = FXCollections.observableArrayList(listaAvaliacao);
+            cBDisciplinas.setItems(disciplinas);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLTelaDesempenhoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
-    public void geradorGrafico(ActionEvent event) throws IOException {
+    public void geradorGrafico() throws IOException {
         try {
-            System.out.println(Avaliacao.calculaMediaDaDisciplina(cBDisciplinas.getValue().toString(), "M1"));
             XYChart.Series desempenho = new XYChart.Series<>();
 
-            desempenho.setName(cBDisciplinas.getSelectionModel().getSelectedItem().toString());
-            grafico.setLegendSide(Side.BOTTOM);
+            desempenho.setName(cBDisciplinas.getSelectionModel().getSelectedItem());
+            
 
-            desempenho.getData().add(new XYChart.Data("M1", Avaliacao.calculaMediaDaDisciplina(cBDisciplinas.getValue().toString(), "M1")));
-            desempenho.getData().add(new XYChart.Data("M2", Avaliacao.calculaMediaDaDisciplina(cBDisciplinas.getValue().toString(), "M2")));
-            desempenho.getData().add(new XYChart.Data("M3", Avaliacao.calculaMediaDaDisciplina(cBDisciplinas.getValue().toString(), "M3")));
+            desempenho.getData().add(new XYChart.Data("M1", Avaliacao.calculaMediaDaDisciplina(cBDisciplinas.getSelectionModel().getSelectedItem() ,"M1")));
+            desempenho.getData().add(new XYChart.Data("M2", Avaliacao.calculaMediaDaDisciplina(cBDisciplinas.getSelectionModel().getSelectedItem(), "M2")));
+            desempenho.getData().add(new XYChart.Data("M3", Avaliacao.calculaMediaDaDisciplina(cBDisciplinas.getSelectionModel().getSelectedItem(), "M3")));
 
             grafico.getData().addAll(desempenho);
 

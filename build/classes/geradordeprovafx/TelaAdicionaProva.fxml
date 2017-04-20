@@ -16,7 +16,7 @@
       <Label fx:id="media" layoutX="355.0" layoutY="424.0" text="Media:" />
       <Button fx:id="voltarMinhasAvaliacoes" layoutX="582.0" layoutY="506.0" mnemonicParsing="false" onAction="#voltarMinhasAvaliacoes" prefHeight="25.0" prefWidth="88.0" text="Voltar" />
       <Button fx:id="salvarProva" layoutX="355.0" layoutY="506.0" mnemonicParsing="false" onAction="#salvarProva" prefHeight="25.0" prefWidth="88.0" text="Salvar" />
-      <ComboBox fx:id="selectDisciplina" layoutX="360.0" layoutY="372.0" prefHeight="25.0" prefWidth="315.0" />
-      <ComboBox fx:id="selectMedia" layoutX="360.0" layoutY="451.0" prefHeight="25.0" prefWidth="62.0" />
+      <ComboBox fx:id="selectDisciplina" layoutX="355.0" layoutY="372.0" prefHeight="25.0" prefWidth="315.0" />
+      <ComboBox fx:id="selectMedia" layoutX="355.0" layoutY="451.0" prefHeight="25.0" prefWidth="62.0" />
    </children>
 </AnchorPane>

@@ -67,7 +67,7 @@ public class FXMLTelaInformarNotaController extends InterfaceUsuario {
                 Avaliacao.obterListaAvaliacoes().get(id).getDisciplina() + ';' +
                 Avaliacao.obterListaAvaliacoes().get(id).getMedia() + ';' +
                 Avaliacao.obterListaAvaliacoes().get(id).getNome() + ';' +
-                Avaliacao.obterListaAvaliacoes().get(id).getPeso() + ';' + campoNota.getText();
+                Avaliacao.obterListaAvaliacoes().get(id).getPeso() + campoNota.getText();
         
         linhas.set(id, linha);
         
